@@ -1,5 +1,7 @@
 package cl.awakelab.Grupal6M6.model.domain.dto;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ public @Data class Cliente {
     private String correo;
     private String telefono;
     private String afp;
+    @Enumerated(EnumType.STRING)
+    private SissaludEnum sisSalud;
     private String direccion;
     private String comuna;
     private int edad;

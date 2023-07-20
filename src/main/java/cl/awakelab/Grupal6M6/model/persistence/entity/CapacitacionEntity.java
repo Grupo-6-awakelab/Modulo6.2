@@ -1,16 +1,17 @@
 package cl.awakelab.Grupal6M6.model.persistence.entity;
 
-import cl.awakelab.Grupal6M6.model.domain.dto.Usuario;
+import cl.awakelab.Grupal6M6.model.domain.dto.Cliente;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Time;
 import java.util.Date;
 
 @Entity
 @Table(name = "capacitacion")
-
-public @Data class Capacitacion {
+@NoArgsConstructor
+public @Data class CapacitacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,6 +24,6 @@ public @Data class Capacitacion {
     private int cantidad;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", insertable = false, updatable = false)
-    private Usuario usuario;
+    private ClienteEntity cliente;
 
 }
