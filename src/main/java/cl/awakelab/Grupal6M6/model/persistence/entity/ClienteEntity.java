@@ -18,6 +18,7 @@ private int id;
     private String correo;
     private String telefono;
     private String afp;
+    @Column(name = "sistema_salud")
     @Enumerated(EnumType.STRING)
     private SissaludEnum sisSalud;
     private String direccion;

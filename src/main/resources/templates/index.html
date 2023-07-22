@@ -49,6 +49,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Detalle</th>
+                <th>Sistema Salud</th>
 
 
             </tr>
@@ -56,14 +57,18 @@
 
             <tbody>
 
-            <tr th:each="capacitacion: ${capacitaciones}">
+          <!--  <tr th:each="capacitacion: ${capacitaciones}">
                 <td th:text="${capacitacion.getId()}">id</td>
-                <td th:text="${capacitacion.getName()}">Name</td>
+                <td th:text="${capacitacion.getNombre()}">Name</td>
                 <td th:text="${capacitacion.getDetalle()}">Detalle</td>
 
-            </tr>
-
-
+            </tr>-->
+          <tr th:each="c: ${clientes}">
+              <td th:text="${c.getId()}">id</td>
+              <td th:text="${c.getNombre()}">Name</td>
+              <td th:text="${c.getApellido()}">Detalle</td>
+              <td th:text="${c.getSisSalud()}">Sistema salud</td>
+          </tr>
             </tbody>
         </table>
 

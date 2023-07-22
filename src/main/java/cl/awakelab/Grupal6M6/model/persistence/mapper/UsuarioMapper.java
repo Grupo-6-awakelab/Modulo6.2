@@ -22,4 +22,5 @@ public interface UsuarioMapper {
     List<Usuario> toUsuarios(List<UsuarioEntity> usuarios);
     @InheritInverseConfiguration
     UsuarioEntity toUsuario(Usuario user);
+
 }
