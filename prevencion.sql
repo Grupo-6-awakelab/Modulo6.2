@@ -20,21 +20,21 @@ CREATE TABLE administrativo (
   FOREIGN key (usuario_id) REFERENCES usuario(id)
 );
 
-create table cliente (
-  id int primary key AUTO_INCREMENT,
-  rut varchar(11) not null,
-  nombre VARCHAR(50) not null,
-  apellido varchar(50) not null,
-  correo varchar(100) not null,
-  telefono varchar(20) not null,
-  afp varchar(50),
-  sistema_salud enum('isapre', 'fonasa'),
-  direccion varchar(100),
-  comuna varchar(50),
-  edad smallint,
-  usuario_id int,
-  FOREIGN key (usuario_id) REFERENCES usuario(id)
-);
+	create table cliente (
+	  id int primary key AUTO_INCREMENT,
+	  rut varchar(11) not null,
+	  nombre VARCHAR(50) not null,
+	  apellido varchar(50) not null,
+	  correo varchar(100) not null,
+	  telefono varchar(20) not null,
+	  afp varchar(50),
+	  sistema_salud enum('isapre', 'fonasa'),
+	  direccion varchar(100),
+	  comuna varchar(50),
+	  edad smallint,
+	  usuario_id int,
+	  FOREIGN key (usuario_id) REFERENCES usuario(id)
+	);
 
 create table profesional (
   id int primary key AUTO_INCREMENT,
@@ -126,19 +126,20 @@ CREATE TABLE asistente (
 INSERT INTO usuario (nombre, username, password)
 VALUES ('Usuario Administrador', 'admin', '1234');
 
-INSERT INTO usuario (nombre, username, password)
+INSERT INTO usuario (nombre, apellido, username, password)
 VALUES
-('Juan Pérez', 'juanzito', 'abc123'),
-('María González', 'mariag', '123abc'),
-('Pedro Sánchez', 'pedros', 'aaa111'),
-('Luisa Rodríguez', 'luisar', 'bbb222'),
-('Andrés López', 'andresl', 'aba333'),
-('Carolina Martínez', 'carom', '2121ab'),
-('Daniel Silva', 'danis', '321bca'),
-('Laura Ramírez', 'laurar', 'a1a1a1'),
-('Sergio Morales', 'sergiom', '2b2b2b');
+('Juan Pérez', 'Pérez', 'juanzito', 'abc123'),
+('María González', 'González', 'mariag', '123abc'),
+('Pedro Sánchez', 'Sánchez', 'pedros', 'aaa111'),
+('Luisa Rodríguez', 'Rodríguez', 'luisar', 'bbb222'),
+('Andrés López', 'López', 'andresl', 'aba333'),
+('Carolina Martínez', 'Martínez', 'carom', '2121ab'),
+('Daniel Silva', 'Silva', 'danis', '321bca'),
+('Laura Ramírez', 'Ramírez', 'laurar', 'a1a1a1'),
+('Sergio Morales', 'Morales', 'sergiom', '2b2b2b');
 
-select * from usuario;
+
+
 
 INSERT INTO administrativo (run, nombre, apellido, correo, area, usuario_id)
 SELECT '11111111-1', 'Juan', 'Pérez', 'juan.perez@correo.com', 'Administración', id
@@ -158,7 +159,6 @@ FROM usuario
 WHERE username = 'pedros'
 LIMIT 1;
 
-select * from administrativo;
 
 INSERT INTO profesional (run, nombre, apellido, correo, telefono, cargo, usuario_id)
 SELECT '44444444-4', 'Luisa', 'Rodriguez', 'luisa.rodriguez@correo.com', '854465236', 'Electrico', id
@@ -178,7 +178,6 @@ FROM usuario
 WHERE username = 'carom'
 LIMIT 1;
 
-select * from profesional;
 
 INSERT INTO cliente (rut, nombre, apellido, correo, telefono, afp, sistema_salud, direccion, comuna, edad, usuario_id)
 SELECT '77777777-7', 'Daniel', 'Silva', 'daniel.silva@correo.com', '654321987', 'AFP1', 'isapre', 'Las rosas 13', 'Valparaiso', 30, id
@@ -198,3 +197,14 @@ FROM usuario
 WHERE username = 'sergiom'
 LIMIT 1;
 
+INSERT INTO capacitacion (nombre, detalle, fecha, hora, lugar, duracion, cantidad, cliente_id)
+VALUES
+('Capacitación para Daniel Silva', 'Detalles de la capacitación para Daniel Silva', '2023-07-22', '09:00:00', 'Sala 1', 150, 20, 1);
+
+INSERT INTO capacitacion (nombre, detalle, fecha, hora, lugar, duracion, cantidad, cliente_id)
+VALUES
+('Capacitación para Laura Ramírez', 'Detalles de la capacitación para Laura Ramírez', '2023-08-05', '14:30:00', 'Salón A', 180, 15, 2);
+
+INSERT INTO capacitacion (nombre, detalle, fecha, hora, lugar, duracion, cantidad, cliente_id)
+VALUES
+('Capacitación para Sergio Morales', 'Detalles de la capacitación para Sergio Morales', '2023-09-10', '10:00:00', 'Centro de Eventos', 240, 30, 3);
