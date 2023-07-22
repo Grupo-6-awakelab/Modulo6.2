@@ -1,12 +1,12 @@
 package cl.awakelab.Grupal6M6.model.domain.service;
-
+import org.springframework.stereotype.Service;
 import cl.awakelab.Grupal6M6.model.domain.dto.Usuario;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.UsuarioMapper;
 import cl.awakelab.Grupal6M6.model.persistence.repository.UsuarioRepository;
 import cl.awakelab.Grupal6M6.web.service.UsuarioService;
 
 import java.util.List;
-
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository repository;
     private final UsuarioMapper mapper;
