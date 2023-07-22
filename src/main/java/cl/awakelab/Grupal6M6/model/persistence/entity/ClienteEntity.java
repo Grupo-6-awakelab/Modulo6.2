@@ -1,7 +1,6 @@
 package cl.awakelab.Grupal6M6.model.persistence.entity;
 
 import cl.awakelab.Grupal6M6.model.domain.dto.SissaludEnum;
-import cl.awakelab.Grupal6M6.model.domain.dto.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +13,12 @@ public @Data class ClienteEntity {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
     private String rut;
+    private String nombre;
+    private String apellido;
     private String correo;
     private String telefono;
     private String afp;
+    @Column(name = "sistema_salud")
     @Enumerated(EnumType.STRING)
     private SissaludEnum sisSalud;
     private String direccion;
