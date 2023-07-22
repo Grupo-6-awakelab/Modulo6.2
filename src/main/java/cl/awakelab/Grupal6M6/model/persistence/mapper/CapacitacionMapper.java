@@ -1,9 +1,9 @@
 package cl.awakelab.Grupal6M6.model.persistence.mapper;
 
 import cl.awakelab.Grupal6M6.model.domain.dto.Capacitacion;
-import cl.awakelab.Grupal6M6.model.domain.dto.Cliente;
+
 import cl.awakelab.Grupal6M6.model.persistence.entity.CapacitacionEntity;
-import cl.awakelab.Grupal6M6.model.persistence.entity.ClienteEntity;
+
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -27,7 +27,7 @@ public interface CapacitacionMapper {
     })
     Capacitacion toCapacitacion(CapacitacionEntity capacitacion);
 
-    List<Capacitacion> toCapacitacion(List<Capacitacion> capacitaciones);
+    List<Capacitacion> toCapacitacion(List<CapacitacionEntity> capacitaciones);
 
     @InheritInverseConfiguration
     CapacitacionEntity toCapacitacion(Capacitacion capacitacion);

@@ -4,9 +4,10 @@ import cl.awakelab.Grupal6M6.model.domain.dto.Capacitacion;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.CapacitacionMapper;
 import cl.awakelab.Grupal6M6.model.persistence.repository.CapacitacionRepository;
 import cl.awakelab.Grupal6M6.web.service.CapacitacionService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CapacitacionServiceImpl implements CapacitacionService {
     private final CapacitacionRepository repository;
     private final CapacitacionMapper mapper;
@@ -17,9 +18,7 @@ public class CapacitacionServiceImpl implements CapacitacionService {
     }
     @Override
     public List<Capacitacion> findAll() {
-    Capacitacion c = new Capacitacion();
-        return this.mapper.toCapacitacion(repository.findAll());
+     return this.mapper.toCapacitacion(repository.findAll());
     }
-
 
 }

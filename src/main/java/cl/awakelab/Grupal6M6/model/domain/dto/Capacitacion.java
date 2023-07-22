@@ -15,9 +15,6 @@ public @Data class Capacitacion {
     private String lugar;
     private float duracion;
     private int cantidad;
-
     private Cliente cliente;
-
-
 
 }

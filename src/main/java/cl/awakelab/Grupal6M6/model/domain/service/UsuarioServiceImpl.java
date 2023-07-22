@@ -16,8 +16,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.mapper = mapper;
     }
 
+
     @Override
     public List<Usuario> findAll() {
-        return null;
+        return mapper.toUsuarios(repository.findAll());
     }
 }
