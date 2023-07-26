@@ -6,6 +6,8 @@ import cl.awakelab.Grupal6M6.web.service.ClienteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClienteServiceImpl implements ClienteService {
     private final ClienteRepository repository;
@@ -18,7 +20,8 @@ public class ClienteServiceImpl implements ClienteService {
 
 
     @Override
-    public List<Cliente> findAll() {
-        return this.mapper.toCliente(repository.findAll());
+    public Optional<List<Cliente>> findAll() {
+        return Optional.of(mapper.toCliente(repository.findAll()));
     }
+
 }
