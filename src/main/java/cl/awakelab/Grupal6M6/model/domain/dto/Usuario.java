@@ -1,5 +1,6 @@
 package cl.awakelab.Grupal6M6.model.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

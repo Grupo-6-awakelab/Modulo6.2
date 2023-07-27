@@ -7,6 +7,8 @@ import cl.awakelab.Grupal6M6.web.service.CapacitacionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CapacitacionServiceImpl implements CapacitacionService {
     private final CapacitacionRepository repository;
@@ -21,4 +23,8 @@ public class CapacitacionServiceImpl implements CapacitacionService {
      return this.mapper.toCapacitacion(repository.findAll());
     }
 
+    @Override
+    public Optional<Capacitacion> findById(int id) {
+        return repository.findById(id).map(mapper::toCapacitacion);
+    }
 }

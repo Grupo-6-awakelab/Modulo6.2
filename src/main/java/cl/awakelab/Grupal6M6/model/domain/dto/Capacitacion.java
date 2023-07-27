@@ -1,5 +1,6 @@
 package cl.awakelab.Grupal6M6.model.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.sql.Time;
@@ -15,6 +16,7 @@ public @Data class Capacitacion {
     private String lugar;
     private float duracion;
     private int cantidad;
+    @JsonIgnore
     private Cliente cliente;
 
 }

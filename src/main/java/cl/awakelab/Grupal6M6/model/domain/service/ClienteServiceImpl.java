@@ -20,10 +20,6 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
 
-    @Override
-    public Optional<List<Cliente>> findAll() {
-        return Optional.of(mapper.toCliente(repository.findAll()));
-    }
 
     @Override
     public Optional<Cliente> findById(int id) {
@@ -43,5 +39,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void delete(int id) {
         repository.deleteById(id);
+
     }
+
 }
