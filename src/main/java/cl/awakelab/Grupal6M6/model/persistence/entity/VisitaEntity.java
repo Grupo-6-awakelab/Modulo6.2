@@ -2,11 +2,14 @@ package cl.awakelab.Grupal6M6.model.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Time;
 import java.util.Date;
 
 @Entity
+@Table(name = "visita")
+@NoArgsConstructor
 public @Data class VisitaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

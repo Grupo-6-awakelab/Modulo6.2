@@ -4,10 +4,12 @@ import cl.awakelab.Grupal6M6.model.domain.dto.Chequeo;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.ChequeoMapper;
 import cl.awakelab.Grupal6M6.model.persistence.repository.ChequeoRepository;
 import cl.awakelab.Grupal6M6.web.service.ChequeoService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ChequeoServiceImpl implements ChequeoService {
 
     private final ChequeoMapper mapper;

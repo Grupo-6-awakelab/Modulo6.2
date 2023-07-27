@@ -14,7 +14,6 @@ public @Data class Profesional {
     private String correo;
     private String telefono;
     private String cargo;
-
-    private UsuarioEntity usuario;
+    private Usuario usuario;
 
 }

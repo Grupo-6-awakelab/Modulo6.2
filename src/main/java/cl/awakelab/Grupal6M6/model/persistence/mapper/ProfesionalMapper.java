@@ -8,7 +8,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "sprinng", uses = {UsuarioMapper.class})
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class})
 public interface ProfesionalMapper {
 
     @Mappings({})

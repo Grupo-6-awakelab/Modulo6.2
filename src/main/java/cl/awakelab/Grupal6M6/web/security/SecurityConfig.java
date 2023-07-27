@@ -12,14 +12,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     private final AuthenticationSuccessHandlerImpl auth;
+
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager(PasswordEncoder encoder){
+    public InMemoryUserDetailsManager userDetailsManager(PasswordEncoder encoder) {
         UserDetails user = User.withUsername("user")
                 .password(encoder.encode("user"))
                 .roles("USER")
@@ -37,20 +39,25 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public AuthenticationSuccessHandler successHandler() {
+        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        handler.setUseReferer(true);
+        return handler;
+    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 
         http
                 .authorizeRequests()
-                /*.requestMatchers("/js/**", "/css/**", "/img/**").permitAll()*/
+                .requestMatchers("/js/**", "/css/**", "/img/**").permitAll()
                 /*.requestMatchers("/").permitAll()*/
                 .requestMatchers("/").hasAnyRole("USER", "ADMIN")
                 .and()
-                .httpBasic(Customizer.withDefaults())
                 .formLogin()
                 .loginPage("/login")
-                .permitAll()
                 .successHandler(auth)
+                .permitAll()
                 .and()
                 .logout() // This is missing and is important
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -62,7 +69,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder encoder(){
+    public PasswordEncoder encoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         /*return new BCryptPasswordEncoder();*/
     }
