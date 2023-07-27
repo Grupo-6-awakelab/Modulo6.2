@@ -18,13 +18,42 @@ public class CapacitacionServiceImpl implements CapacitacionService {
         this.repository = repository;
         this.mapper = mapper;
     }
+
     @Override
-    public List<Capacitacion> findAll() {
-     return this.mapper.toCapacitacion(repository.findAll());
+    public Optional<List<Capacitacion>> findAll() {
+        return Optional.of(mapper.toCapacitacion(repository.findAll()));
     }
 
     @Override
     public Optional<Capacitacion> findById(int id) {
         return repository.findById(id).map(mapper::toCapacitacion);
+    }
+
+    @Override
+    public Optional<Capacitacion> create(Capacitacion capacitacion) {
+        return Optional.of(
+                mapper.toCapacitacion(
+                        repository.save(
+                                mapper.toCapacitacion(capacitacion)
+                                )
+                        )
+                );
+    }
+
+    @Override
+    public Optional<Capacitacion> update(Capacitacion capacitacion) {
+        return Optional.of(
+                mapper.toCapacitacion(
+                        repository.save(
+                                mapper.toCapacitacion(capacitacion)
+                        )
+                )
+        );
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.deleteById(id);
+
     }
 }
