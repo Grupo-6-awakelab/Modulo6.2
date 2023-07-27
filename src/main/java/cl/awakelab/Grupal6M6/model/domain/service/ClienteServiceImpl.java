@@ -1,4 +1,5 @@
 package cl.awakelab.Grupal6M6.model.domain.service;
+import cl.awakelab.Grupal6M6.model.domain.dto.Administrativo;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.ClienteMapper;
 import cl.awakelab.Grupal6M6.model.domain.dto.Cliente;
 import cl.awakelab.Grupal6M6.model.persistence.repository.ClienteRepository;
@@ -19,9 +20,27 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
 
+   
+
     @Override
-    public Optional<List<Cliente>> findAll() {
-        return Optional.of(mapper.toCliente(repository.findAll()));
+    public Optional<Cliente> findById(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Cliente> create(Cliente cliente) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Cliente> update(Cliente cliente) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.deleteById(id);
+
     }
 
 }
