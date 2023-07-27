@@ -11,12 +11,13 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+    private final AuthenticationSuccessHandlerImpl auth;
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(PasswordEncoder encoder){
         UserDetails user = User.withUsername("user")
@@ -30,8 +31,15 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(user, admin);
     }
+
+    public SecurityConfig(AuthenticationSuccessHandlerImpl auth) {
+        this.auth = auth;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+
+
         http
                 .authorizeRequests()
                 /*.requestMatchers("/js/**", "/css/**", "/img/**").permitAll()*/
@@ -41,8 +49,8 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .formLogin()
                 .loginPage("/login")
-                /*.defaultSuccessUrl("/", true)*/
                 .permitAll()
+                .successHandler(auth)
                 .and()
                 .logout() // This is missing and is important
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

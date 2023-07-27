@@ -21,4 +21,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public List<Usuario> findAll() {
         return mapper.toUsuarios(repository.findAll());
     }
+
+    @Override
+    public Usuario findByUsername(String username) {
+       return repository.findByUsername(username);
+    }
 }
