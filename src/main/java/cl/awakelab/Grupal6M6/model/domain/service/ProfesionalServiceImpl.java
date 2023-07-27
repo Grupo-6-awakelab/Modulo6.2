@@ -4,9 +4,12 @@ import cl.awakelab.Grupal6M6.model.domain.dto.Profesional;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.ProfesionalMapper;
 import cl.awakelab.Grupal6M6.model.persistence.repository.ProfesionalRepository;
 import cl.awakelab.Grupal6M6.web.service.ProfesionalService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+@Service
 
 public class ProfesionalServiceImpl implements ProfesionalService {
 private final ProfesionalRepository repository;

@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "sprinng", uses = {Visita.class})
+@Mapper(componentModel = "spring", uses = {Visita.class})
 public interface ChequeoMapper {
     @Mappings({})
     Chequeo toChequeo(ChequeoEntity entity);

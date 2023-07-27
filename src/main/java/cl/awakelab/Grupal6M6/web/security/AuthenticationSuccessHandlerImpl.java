@@ -2,6 +2,7 @@ package cl.awakelab.Grupal6M6.web.security;
 
 import cl.awakelab.Grupal6M6.model.persistence.repository.UsuarioRepository;
 import cl.awakelab.Grupal6M6.web.service.UsuarioService;
+import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,13 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.security.Principal;
 
 @Component
-public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
+public class AuthenticationSuccessHandlerImpl extends SavedRequestAwareAuthenticationSuccessHandler {
     HttpSession session;
     UsuarioRepository repository;
     private final UsuarioService service;
@@ -31,9 +33,17 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     }
 
     @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+        super.onAuthenticationSuccess(request, response, chain, authentication);
+
+
+    }
+
+
+    @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-
+        System.out.println("HEP HEP");
         String userName = "";
         if(authentication.getPrincipal() instanceof Principal) {
             userName = ((Principal)authentication.getPrincipal()).getName();
@@ -43,7 +53,14 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
             userName = ((User)authentication.getPrincipal()).getUsername();
         }
         logger.info("userName: " + userName);
-        //HttpSession session = request.getSession();
+
+
         session.setAttribute("userId", userName);
+        super.onAuthenticationSuccess(request, response, authentication);
+
+
+
+
+
     }
 }

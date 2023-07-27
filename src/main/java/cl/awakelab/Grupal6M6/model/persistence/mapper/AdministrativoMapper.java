@@ -9,20 +9,14 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses ={UsuarioMapper.class})
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class})
 public interface AdministrativoMapper {
-    @Mappings({
-            @Mapping(source = "id", target = "id"),
-            @Mapping(source = "nombre", target = "nombre"),
-            @Mapping(source = "apellido", target = "apellido"),
-            @Mapping(source = "correo", target = "correo"),
-            @Mapping(source = "area", target = "area"),
-            @Mapping(source = "usuario", target = "usuario"),
-
-    })
+    @Mappings({})
     Administrativo toAdministrativo(AdministrativoEntity Administrativo);
-        List<Administrativo> toAdministrativo(List<AdministrativoEntity> administrativo);
-            @InheritInverseConfiguration
+
+    List<Administrativo> toAdministrativo(List<AdministrativoEntity> administrativo);
+
+    @InheritInverseConfiguration
     AdministrativoEntity toAdministrativo(Administrativo administrativo);
 
 }

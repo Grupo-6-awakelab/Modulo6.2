@@ -8,12 +8,12 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ClienteMapper.class})
+@Mapper(componentModel = "spring", uses = {ProfesionalMapper.class, ClienteMapper.class})
 public interface AsesoriaMapper {
     @Mappings({})
     Asesoria toAsesoria(AsesoriaEntity asesoria);
 
-    List<Asesoria> toAsesoria(List<AsesoriaEntity> asesoria);
+    List<Asesoria> toAsesoria(List<AsesoriaEntity> asesorias);
 
     @InheritInverseConfiguration
     AsesoriaEntity toAsesoria(Asesoria asesoria);

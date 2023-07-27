@@ -4,10 +4,12 @@ import cl.awakelab.Grupal6M6.model.domain.dto.Visita;
 import cl.awakelab.Grupal6M6.model.persistence.mapper.VisitaMapper;
 import cl.awakelab.Grupal6M6.model.persistence.repository.VisitaRepository;
 import cl.awakelab.Grupal6M6.web.service.VisitaService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class VisitaServiceImpl implements VisitaService {
 
     private final VisitaMapper mapper;

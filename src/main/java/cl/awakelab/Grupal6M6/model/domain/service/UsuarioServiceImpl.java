@@ -6,6 +6,8 @@ import cl.awakelab.Grupal6M6.model.persistence.repository.UsuarioRepository;
 import cl.awakelab.Grupal6M6.web.service.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository repository;
@@ -18,12 +20,42 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     @Override
-    public List<Usuario> findAll() {
-        return mapper.toUsuarios(repository.findAll());
+    public Optional<List<Usuario>> findAll() {
+        return Optional.of(mapper.toUsuarios(repository.findAll()));
     }
 
     @Override
-    public Usuario findByUsername(String username) {
-       return repository.findByUsername(username);
+    public Optional<Usuario> findById(int id) {
+        return repository.findById(id).map(mapper::toUsuario);
+
     }
+
+    @Override
+    public Optional<Usuario> create(Usuario usuario) {
+        return Optional.of(
+                mapper.toUsuario(
+                        repository.save(
+                         mapper.toUsuario(usuario)
+                        )
+
+        ));
+    }
+
+    @Override
+    public Optional<Usuario> update(Usuario usuario) {
+        return Optional.of(
+                mapper.toUsuario(
+                        repository.save(
+                                mapper.toUsuario(usuario)
+                        )
+                )
+        );
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.deleteById(id);
+    }
+
+
 }

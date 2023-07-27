@@ -18,7 +18,7 @@ public interface UsuarioMapper {
             @Mapping(source = "username", target = "username"),
             @Mapping(source = "password", target = "password"),
     })
-    Usuario toUser(UsuarioEntity usuario);
+    Usuario toUsuario(UsuarioEntity usuario);
     List<Usuario> toUsuarios(List<UsuarioEntity> usuarios);
     @InheritInverseConfiguration
     UsuarioEntity toUsuario(Usuario user);

@@ -1,15 +1,16 @@
 package cl.awakelab.Grupal6M6.model.persistence.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="administrativo")
 @NoArgsConstructor
-public class AdministrativoEntity {
+public @Data class AdministrativoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String run;
     private String nombre;
     private String apellido;
