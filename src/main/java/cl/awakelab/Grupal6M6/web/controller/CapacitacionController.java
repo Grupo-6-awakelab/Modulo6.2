@@ -30,6 +30,7 @@ public class CapacitacionController {
 
     @GetMapping("/crear")
      public String crear(){
+
         return "capacitacion";
     }
 
