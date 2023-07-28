@@ -25,6 +25,7 @@ public interface CapacitacionMapper {
             @Mapping(source = "cliente.id", target = "clienteId"),
 
     })
+
     Capacitacion toCapacitacionDto(CapacitacionEntity capacitacion);
 
     List<Capacitacion> toCapacitacion(List<CapacitacionEntity> capacitaciones);

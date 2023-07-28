@@ -22,7 +22,6 @@ public @Data class CapacitacionEntity {
     private String lugar;
     private float duracion;
     private int cantidad;
-
     @OneToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;

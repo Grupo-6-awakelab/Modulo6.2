@@ -13,10 +13,10 @@ public @Data class AsesoriaEntity {
     private int id;
     private String nombre;
     private String detalle;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "profesional_id", insertable = false, updatable = false)
     private ProfesionalEntity profesional;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "cliente_id", insertable = false, updatable = false)
     private ClienteEntity cliente;
 
