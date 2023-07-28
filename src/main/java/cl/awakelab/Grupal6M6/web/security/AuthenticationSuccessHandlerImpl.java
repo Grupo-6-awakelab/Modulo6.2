@@ -41,26 +41,17 @@ public class AuthenticationSuccessHandlerImpl extends SavedRequestAwareAuthentic
 
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         System.out.println("HEP HEP");
         String userName = "";
-        if(authentication.getPrincipal() instanceof Principal) {
-            userName = ((Principal)authentication.getPrincipal()).getName();
-
-
-        }else {
-            userName = ((User)authentication.getPrincipal()).getUsername();
+        if (authentication.getPrincipal() instanceof UserDetails) {
+            userName = ((UserDetails) authentication.getPrincipal()).getUsername();
+        } else {
+            // Manejar otros casos de autenticación, si es necesario.
         }
         logger.info("userName: " + userName);
 
-
         session.setAttribute("userId", userName);
         super.onAuthenticationSuccess(request, response, authentication);
-
-
-
-
-
     }
 }
