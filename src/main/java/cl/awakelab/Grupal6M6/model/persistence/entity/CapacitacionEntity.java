@@ -22,8 +22,13 @@ public @Data class CapacitacionEntity {
     private String lugar;
     private float duracion;
     private int cantidad;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", insertable = false, updatable = false)
+
+    @OneToOne
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
+
+
+
+
 
 }

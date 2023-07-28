@@ -22,14 +22,14 @@ public interface CapacitacionMapper {
             @Mapping(source = "lugar", target = "lugar"),
             @Mapping(source = "duracion", target = "duracion"),
             @Mapping(source = "cantidad", target = "cantidad"),
-            @Mapping(source = "cliente", target = "cliente"),
+            @Mapping(source = "cliente.id", target = "clienteId"),
 
     })
-    Capacitacion toCapacitacion(CapacitacionEntity capacitacion);
+    Capacitacion toCapacitacionDto(CapacitacionEntity capacitacion);
 
     List<Capacitacion> toCapacitacion(List<CapacitacionEntity> capacitaciones);
 
     @InheritInverseConfiguration
-    CapacitacionEntity toCapacitacion(Capacitacion capacitacion);
+    CapacitacionEntity toCapacitacionEntity(Capacitacion capacitacion);
 
 }

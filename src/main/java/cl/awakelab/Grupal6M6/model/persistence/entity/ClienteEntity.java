@@ -25,9 +25,9 @@ private int id;
     private String direccion;
     private String comuna;
     private int edad;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
-
+    @MapsId("id")
     private UsuarioEntity usuario;
 
 

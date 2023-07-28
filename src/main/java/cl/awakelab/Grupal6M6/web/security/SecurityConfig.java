@@ -52,8 +52,10 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/js/**", "/css/**", "/img/**").permitAll()
                 /*.requestMatchers("/").permitAll()*/
-                .requestMatchers("/").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/api/v1/**").hasAnyRole("USER", "ADMIN")
                 .and()
+                .cors().and().csrf().disable()
+                .httpBasic(Customizer.withDefaults())
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(auth)

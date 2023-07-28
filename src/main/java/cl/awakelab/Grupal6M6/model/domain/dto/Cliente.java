@@ -19,7 +19,7 @@ public @Data class Cliente {
     private String direccion;
     private String comuna;
     private int edad;
-    private Usuario usuario;
+    private int usuarioId;
 
 
 }
