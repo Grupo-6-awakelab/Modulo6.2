@@ -5,3 +5,7 @@ Autores:
 
 Repositorio Github
 https://github.com/Grupo-6-awakelab/Modulo6.2
+
+ingreso de login:
+usuario: admin
+password: admin
