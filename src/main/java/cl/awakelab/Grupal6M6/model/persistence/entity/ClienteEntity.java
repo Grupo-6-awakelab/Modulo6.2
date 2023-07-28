@@ -27,7 +27,6 @@ private int id;
     private int edad;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
-    @MapsId("id")
     private UsuarioEntity usuario;
 
 

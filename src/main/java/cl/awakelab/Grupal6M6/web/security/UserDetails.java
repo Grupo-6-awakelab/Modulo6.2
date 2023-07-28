@@ -1,38 +1,33 @@
 package cl.awakelab.Grupal6M6.web.security;
-
-import cl.awakelab.Grupal6M6.model.domain.dto.Usuario;
 import cl.awakelab.Grupal6M6.model.persistence.entity.UsuarioEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
-public class EnrollUserDetails implements UserDetails {
+public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
+    private final UsuarioEntity user;
 
-    private final UsuarioEntity usuario;
-    public EnrollUserDetails(UsuarioEntity usuario) {
-        this.usuario = usuario;
+    public UserDetails(UsuarioEntity user) {
+        this.user = user;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       SimpleGrantedAuthority authority = new SimpleGrantedAuthority(usuario.getRole());
-        return List.of(authority);
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
+        return Arrays.asList(authority);
     }
 
     @Override
     public String getPassword() {
-        return usuario.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return usuario.getUsername();
+        return user.getUsername();
     }
 
     @Override

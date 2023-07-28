@@ -22,21 +22,21 @@ private final AsesoriaMapper mapper;
 
     @Override
     public Optional<List<Asesoria>> findAll() {
-        return Optional.of(mapper.toAsesoria(repository.findAll()));
+        return Optional.of(mapper.toAsesorias(repository.findAll()));
     }
 
     @Override
     public Optional<Asesoria> findById(int id) {
 
-        return repository.findById(id).map(mapper::toAsesoria);
+        return repository.findById(id).map(mapper::toAsesoriaDTO);
     }
 
     @Override
     public Optional<Asesoria> create(Asesoria asesoria) {
         return Optional.of(
-                mapper.toAsesoria(
+                mapper.toAsesoriaDTO(
                         repository.save(
-                                mapper.toAsesoria(asesoria)
+                                mapper.toAsesoriaEntity(asesoria)
                         )
                 )
         );
@@ -45,9 +45,9 @@ private final AsesoriaMapper mapper;
     @Override
     public Optional<Asesoria> update(Asesoria asesoria) {
         return Optional.of(
-                mapper.toAsesoria(
+                mapper.toAsesoriaDTO(
                         repository.save(
-                                mapper.toAsesoria(asesoria)
+                                mapper.toAsesoriaEntity(asesoria)
                         )
                 )
         );

@@ -78,7 +78,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Asesorias</h6>
                     </div>
                     <div class="card-body">
-                       <div th:if="${asesorias.isPresent}">
+                        <div th:unless="${#lists.isEmpty(asesorias.get())}">
                         <div class="table-responsive">
                             <table class="table table-bordered dataTable" id="dataTable"
                                    width="100%" cellspacing="0">
@@ -99,8 +99,8 @@
                                     <td th:text="${asesoria.getId()}">Id</td>
                                     <td th:text="${asesoria.getNombre()}">UserName</td>
                                     <td th:text="${asesoria.getDetalle()}">Detalle</td>
-                                   <td th:text="${asesoria.getProfesional().getNombre + ' ' + asesoria.getProfesional().getApellido}">Profesional</td>
-                                    <td th:text="${asesoria.getCliente().getNombre + ' ' + asesoria.getCliente().getApellido }">Cliente</td>
+                                   <td th:text="${asesoria.getProfesional().getNombre() + ' ' + asesoria.getProfesional().getApellido()}">Profesional</td>
+                                    <td th:text="${asesoria.getCliente().getNombre() + ' ' + asesoria.getCliente().getApellido() }">Cliente</td>
                                     <td><a th:href="${asesoria.getId()}"><i class="fa-solid fa-book-open"></i></a>
                                         <a href="${pageContext.request.contextPath}/administrarasesoria?a=edit&id=${asesoria.getId()}">
                                             <i class="fa-solid fa-pen-to-square"></i></a>
@@ -116,8 +116,9 @@
                             </table>
                         </div>
                         </div>
-                        <div th:unless="${asesoria.isPresent()}">
-                            <h1>NO HAY CAPACITACIONES PARA LISTAR</h1>
+                    <div th:if="${#lists.isEmpty(asesorias.get())}">
+
+                            <h1>NO HAY ASESORIAS PARA LISTAR</h1>
                         </div>
                     </div>
 

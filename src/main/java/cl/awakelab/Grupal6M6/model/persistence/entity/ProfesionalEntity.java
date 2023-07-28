@@ -19,7 +19,7 @@ public @Data class ProfesionalEntity {
     private String correo;
     private String telefono;
     private String cargo;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private UsuarioEntity usuario;
 }

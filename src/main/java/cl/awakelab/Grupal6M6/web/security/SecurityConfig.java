@@ -23,19 +23,7 @@ public class SecurityConfig {
 
 
 
-/*    @Bean
-    public InMemoryUserDetailsManager userDetailsManager(PasswordEncoder encoder) {
-        UserDetails user = User.withUsername("user")
-                .password(encoder.encode("user"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.encode("admin"))
-                .roles("USER", "ADMIN")
-                .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
-    */
 
     UsuarioRepository repository;
     public SecurityConfig(AuthenticationSuccessHandlerImpl auth, UsuarioRepository repository){
@@ -45,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-        return new UserDetailServiceImpl(repository);
+        return new UserDetailsServiceImpl(repository);
     }
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -60,16 +48,6 @@ public class SecurityConfig {
     }
 
 
-   /* public SecurityConfig(AuthenticationSuccessHandlerImpl auth) {
-        this.auth = auth;
-    }
-
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
-        handler.setUseReferer(true);
-        return handler;
-    }*/
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -81,7 +59,6 @@ public class SecurityConfig {
                 .requestMatchers("/dashboard").hasAnyRole("USER", "ADMIN")
                 .and()
                 .cors().and().csrf().disable()
-                .httpBasic(Customizer.withDefaults())
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(auth)

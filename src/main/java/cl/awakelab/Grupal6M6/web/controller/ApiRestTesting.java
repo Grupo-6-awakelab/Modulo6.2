@@ -14,21 +14,21 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class ApiRestTesting {
 
-    private final CapacitacionService service;
+    private final AsesoriaService service;
 
-    public ApiRestTesting(CapacitacionService service) {
+    public ApiRestTesting(AsesoriaService service) {
         this.service = service;
 
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Capacitacion> create(@RequestBody Capacitacion capacitacion){
+    public ResponseEntity<Asesoria> create(@RequestBody Asesoria capacitacion){
         return service.create(capacitacion)
                 .map(t-> new ResponseEntity<>(t, HttpStatus.CREATED))
                 .orElse(new ResponseEntity<>(HttpStatus.CONFLICT));
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Capacitacion>> findAll(){
+    public ResponseEntity<List<Asesoria>> findAll(){
         return service.findAll()
                 .map(accidentes -> new ResponseEntity<>(accidentes, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

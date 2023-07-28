@@ -2,6 +2,7 @@ package cl.awakelab.Grupal6M6.web.controller;
 
 import cl.awakelab.Grupal6M6.model.domain.dto.Asesoria;
 import cl.awakelab.Grupal6M6.web.service.AsesoriaService;
+import cl.awakelab.Grupal6M6.web.service.ProfesionalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,16 +10,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/asesoria")
 public class AsesoriaController {
     private final AsesoriaService asesoriaService;
+    private final ProfesionalService profesionalService;
 
-    public AsesoriaController(AsesoriaService asesoriaService) {
+    public AsesoriaController(AsesoriaService asesoriaService, ProfesionalService profesionalService) {
         this.asesoriaService = asesoriaService;
+        this.profesionalService = profesionalService;
     }
 
     @GetMapping
@@ -28,7 +30,8 @@ public class AsesoriaController {
     }
 
     @GetMapping("/crear")
-    public String crear(){
+    public String crear(Model model) {
+        model.addAttribute("profesionales",profesionalService.findAll());
         return "asesoria";
     }
 
