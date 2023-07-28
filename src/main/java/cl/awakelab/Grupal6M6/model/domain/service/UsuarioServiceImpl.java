@@ -19,6 +19,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
 
+
     @Override
     public Optional<List<Usuario>> findAll() {
         return Optional.of(mapper.toUsuarios(repository.findAll()));
