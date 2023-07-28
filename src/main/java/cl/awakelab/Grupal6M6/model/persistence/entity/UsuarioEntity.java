@@ -11,8 +11,7 @@ public @Data class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombre;
-    private String apellido;
+    private String role;
     private String username;
     private String password;
 }
