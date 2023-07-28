@@ -27,17 +27,29 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Optional<Cliente> findById(int id) {
-        return Optional.empty();
+        return repository.findById(id).map(mapper::toCliente);
     }
 
     @Override
     public Optional<Cliente> create(Cliente cliente) {
-        return Optional.empty();
+        return Optional.of(
+                mapper.toCliente(
+                        repository.save(
+                                mapper.toCliente(cliente)
+                        )
+                )
+        );
     }
 
     @Override
     public Optional<Cliente> update(Cliente cliente) {
-        return Optional.empty();
+        return Optional.of(
+                mapper.toCliente(
+                        repository.save(
+                                mapper.toCliente(cliente)
+                        )
+                )
+        );
     }
 
     @Override

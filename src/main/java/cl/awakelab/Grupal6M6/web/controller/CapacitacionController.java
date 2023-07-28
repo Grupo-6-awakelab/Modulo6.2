@@ -31,8 +31,11 @@ public class CapacitacionController {
     }
 
     @GetMapping("/crear")
+
      public String crear(Model model){
         model.addAttribute("clientes",clienteService.findAll());
+
+
         return "capacitacion";
     }
 
