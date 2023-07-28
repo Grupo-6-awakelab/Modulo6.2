@@ -26,15 +26,15 @@ public class CapacitacionServiceImpl implements CapacitacionService {
 
     @Override
     public Optional<Capacitacion> findById(int id) {
-        return repository.findById(id).map(mapper::toCapacitacion);
+        return repository.findById(id).map(mapper::toCapacitacionDto);
     }
 
     @Override
     public Optional<Capacitacion> create(Capacitacion capacitacion) {
         return Optional.of(
-                mapper.toCapacitacion(
+                mapper.toCapacitacionDto(
                         repository.save(
-                                mapper.toCapacitacion(capacitacion)
+                                mapper.toCapacitacionEntity(capacitacion)
                                 )
                         )
                 );
@@ -43,9 +43,9 @@ public class CapacitacionServiceImpl implements CapacitacionService {
     @Override
     public Optional<Capacitacion> update(Capacitacion capacitacion) {
         return Optional.of(
-                mapper.toCapacitacion(
+                mapper.toCapacitacionDto(
                         repository.save(
-                                mapper.toCapacitacion(capacitacion)
+                                mapper.toCapacitacionEntity(capacitacion)
                         )
                 )
         );

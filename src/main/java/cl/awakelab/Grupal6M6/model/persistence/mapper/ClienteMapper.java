@@ -22,7 +22,7 @@ public interface ClienteMapper {
             @Mapping(source = "direccion", target = "direccion"),
             @Mapping(source = "comuna", target = "comuna"),
             @Mapping(source = "edad", target = "edad"),
-            @Mapping(source = "usuario", target = "usuario"),
+            @Mapping(source = "usuario.id", target = "usuarioId"),
     })
     Cliente toCliente(ClienteEntity cliente);
     List<Cliente> toCliente(List<ClienteEntity> clientes);

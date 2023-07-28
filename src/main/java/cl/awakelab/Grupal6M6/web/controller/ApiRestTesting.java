@@ -6,9 +6,7 @@ import cl.awakelab.Grupal6M6.web.service.*;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,17 +14,25 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class ApiRestTesting {
 
-    private final VisitaService service;
+    private final CapacitacionService service;
 
-    public ApiRestTesting(VisitaService service) {
+    public ApiRestTesting(CapacitacionService service) {
         this.service = service;
 
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<Capacitacion> create(@RequestBody Capacitacion capacitacion){
+        return service.create(capacitacion)
+                .map(t-> new ResponseEntity<>(t, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.CONFLICT));
+    }
     @GetMapping("/all")
-    public ResponseEntity<List<Visita>> findAll(){
+    public ResponseEntity<List<Capacitacion>> findAll(){
         return service.findAll()
                 .map(accidentes -> new ResponseEntity<>(accidentes, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+
 }
