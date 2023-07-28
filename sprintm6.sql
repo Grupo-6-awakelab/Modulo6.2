@@ -1,10 +1,10 @@
-CREATE DATABASE prevencion;
-USE prevencion;
+CREATE DATABASE sprintm6;
+USE sprintm6;
 
 -- Tabla "Usuarios"
 CREATE TABLE usuario (
  id INT PRIMARY KEY AUTO_INCREMENT,
- nombre VARCHAR(50) NOT NULL,
+ role VARCHAR(20) NOT NULL,
  username varchar(100) not null,
  password varchar(500) not null
 );
@@ -123,78 +123,30 @@ CREATE TABLE asistente (
   PRIMARY KEY (capacitacion_id, usuario_id)
 );
 
-INSERT INTO usuario (nombre, username, password)
-VALUES ('Usuario Administrador', 'admin', '1234');
-
-INSERT INTO usuario (nombre, apellido, username, password)
-VALUES
-('Juan Pérez', 'Pérez', 'juanzito', 'abc123'),
-('María González', 'González', 'mariag', '123abc'),
-('Pedro Sánchez', 'Sánchez', 'pedros', 'aaa111'),
-('Luisa Rodríguez', 'Rodríguez', 'luisar', 'bbb222'),
-('Andrés López', 'López', 'andresl', 'aba333'),
-('Carolina Martínez', 'Martínez', 'carom', '2121ab'),
-('Daniel Silva', 'Silva', 'danis', '321bca'),
-('Laura Ramírez', 'Ramírez', 'laurar', 'a1a1a1'),
-('Sergio Morales', 'Morales', 'sergiom', '2b2b2b');
-
-
-
-
-INSERT INTO administrativo (run, nombre, apellido, correo, area, usuario_id)
-SELECT '11111111-1', 'Juan', 'Pérez', 'juan.perez@correo.com', 'Administración', id
-FROM usuario
-WHERE username = 'juanzito'
-LIMIT 1;
-
-INSERT INTO administrativo (run, nombre, apellido, correo, area, usuario_id)
-SELECT '22222222-2', 'María', 'González', 'maria.gonzalez@correo.com', 'Recursos Humanos', id
-FROM usuario
-WHERE username = 'mariag'
-LIMIT 1;
-
-INSERT INTO administrativo (run, nombre, apellido, correo, area, usuario_id)
-SELECT '33333333-3', 'Pedro', 'Sánchez', 'pedro.sanchez@correo.com', 'Finanzas', id
-FROM usuario
-WHERE username = 'pedros'
-LIMIT 1;
-
-
-INSERT INTO profesional (run, nombre, apellido, correo, telefono, cargo, usuario_id)
-SELECT '44444444-4', 'Luisa', 'Rodriguez', 'luisa.rodriguez@correo.com', '854465236', 'Electrico', id
-FROM usuario
-WHERE username = 'luisar'
-LIMIT 1;
-
-INSERT INTO profesional (run, nombre, apellido, correo, telefono, cargo, usuario_id)
-SELECT '55555555-5', 'Andrés', 'Lopez', 'andres.lopez@correo.com', '987654321', 'Informatico', id
-FROM usuario
-WHERE username = 'andresl'
-LIMIT 1;
-
-INSERT INTO profesional (run, nombre, apellido, correo, telefono, cargo, usuario_id)
-SELECT '66666666-6', 'Carolina', 'Martínez', 'carolina.martinez@correo.com', '654321987', 'Analista', id
-FROM usuario
-WHERE username = 'carom'
-LIMIT 1;
+INSERT INTO usuario (role, username, password)
+VALUES ('ADMIN', 'admin', '$2a$12$ECjGeH4Y9KRn2.8WZ1M8e.rXzUdfiTTVuRpVEL6jAzus.JkNsABke'),
+('CLIENTE', 'danielsilva','$2a$12$dQvm0RQvBZpCVoy3zOciBuU9GaHXTRCStfgrF5Hnvuir8rtE2QGGq'),
+('PROFESIONAL','juanperez','$2a$12$q09p47uGSS6D9faankwkm.GfGmeG3mjdtXsaU2YN3bciAkrZdpEAC'),
+('CLIENTE', 'lauraramirez', '$2a$12$I/qjHm1s.GgvMAE.nK.9e.rlr0C0.xanpfSjQaqVl7.HQwDGXQ1F2'),
+('CLIENTE', 'sergiomoralez','$2a$12$Ksh2QNA.57ZTQANkC0I37OIPbbxkM9T0DtffITD5QM1KebxNk3l/O');
 
 
 INSERT INTO cliente (rut, nombre, apellido, correo, telefono, afp, sistema_salud, direccion, comuna, edad, usuario_id)
 SELECT '77777777-7', 'Daniel', 'Silva', 'daniel.silva@correo.com', '654321987', 'AFP1', 'isapre', 'Las rosas 13', 'Valparaiso', 30, id
 FROM usuario
-WHERE username = 'danis'
+WHERE username = 'danielsilva'
 LIMIT 1;
 
 INSERT INTO cliente (rut, nombre, apellido, correo, telefono, afp, sistema_salud, direccion, comuna, edad, usuario_id)
 SELECT '88888888-8', 'Laura', 'Ramírez', 'laura.ramirez@correo.com', '951753852', 'AFP2', 'fonasa', 'camelias 55', 'Quilpue', 35, id
 FROM usuario
-WHERE username = 'laurar'
+WHERE username = 'lauraramirez'
 LIMIT 1;
 
 INSERT INTO cliente (rut, nombre, apellido, correo, telefono, afp, sistema_salud, direccion, comuna, edad, usuario_id)
 SELECT '99999999-9', 'Sergio', 'Moralez', 'sergio.morales@correo.com', '444555222', 'AFP3', 'isapre', 'av quinta 654', 'Concon', 40, id
 FROM usuario
-WHERE username = 'sergiom'
+WHERE username = 'sergiomoralez'
 LIMIT 1;
 
 INSERT INTO capacitacion (nombre, detalle, fecha, hora, lugar, duracion, cantidad, cliente_id)
@@ -208,3 +160,11 @@ VALUES
 INSERT INTO capacitacion (nombre, detalle, fecha, hora, lugar, duracion, cantidad, cliente_id)
 VALUES
 ('Capacitación para Sergio Morales', 'Detalles de la capacitación para Sergio Morales', '2023-09-10', '10:00:00', 'Centro de Eventos', 240, 30, 3);
+
+INSERT INTO profesional (run, nombre, apellido, correo, telefono, cargo, usuario_id)
+VALUES
+('1111111-1', 'Jose', 'perez', 'joseperez@correo.cl', '686868686', 'informatico', '3');
+
+INSERT INTO asesoria (nombre, detalle, profesional_id, cliente_id)
+VALUES
+('Prevension', 'prevension de traslado', '1', '1');
