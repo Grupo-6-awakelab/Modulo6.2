@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "cliente")
 @NoArgsConstructor
 public @Data class ClienteEntity {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String rut;
     private String nombre;
     private String apellido;
@@ -28,7 +28,6 @@ private int id;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private UsuarioEntity usuario;
-
 
 
 }
