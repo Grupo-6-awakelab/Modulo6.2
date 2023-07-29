@@ -68,7 +68,7 @@
                     </div>
                     <div class="card-body">
                         <form method="post" action="/asesoria/crear">
-                            <input type="hidden" id="id" name="clienteId" class="form-control" value="2">
+
 
                             <div class="form-group">
 
@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label for="cliente">Cliente: </label>
                                 <select class="selectpicker" name="clienteId" id="cliente" data-live-search="true">
-                                    <option>1</option>
+                                    <option th:each="cliente: ${clientes.get()}" th:value="${cliente.getId()}" th:text="${cliente.getNombre()}"></option>
 
                                 </select>
                             </div>
@@ -212,7 +212,14 @@
 <!-- Page level plugins -->
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-<script>$('select').selectpicker();</script>
+<script>$('select').selectpicker();
+
+ $('.selectpicker').change(function () {
+        var selectedItem = $('.selectpicker').val();
+
+    });
+
+</script>
 </body>
 
 </html>
