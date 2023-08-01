@@ -5,10 +5,7 @@ import cl.awakelab.Grupal6M6.web.service.CapacitacionService;
 import cl.awakelab.Grupal6M6.web.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -33,10 +30,21 @@ public class CapacitacionController {
     @GetMapping("/crear")
 
      public String crear(Model model){
+        model.addAttribute("isNew", true);
         model.addAttribute("clientes",clienteService.findAll());
 
         return "capacitacion";
     }
+    @GetMapping("/editar/{capacitacionId}")
+
+     public String editar(@PathVariable int capacitacionId, Model model){
+        model.addAttribute("isNew", false);
+        model.addAttribute("clientes",clienteService.findAll());
+        model.addAttribute("capacitacion", capacitacionService.findById(capacitacionId));
+
+        return "capacitacion";
+    }
+
 
 
     @PostMapping("/crear")
@@ -49,8 +57,29 @@ public class CapacitacionController {
         } else {
 
 
+            return "error";
+        }
+
+    }
+    @PostMapping("/editar/{capacitacionId}")
+    public String update(@ModelAttribute Capacitacion capacitacion,@PathVariable int capacitacionId){
+        Optional<Capacitacion> ok = capacitacionService.update(capacitacion);
+        if (ok.isPresent()) {
+
+
+            return "redirect:/capacitacion";
+        } else {
+
+
             return "redirect:/error";
         }
 
     }
+
+    @GetMapping("/eliminar/{capacitacionId}")
+    public String eliminarCapacitacion(@PathVariable int capacitacionId)    {
+        capacitacionService.delete(capacitacionId);
+        return "redirect:/capacitacion";
+    }
+
 }

@@ -28,23 +28,16 @@
     <link rel="stylesheet"
           href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-	$(document)
-			.ready(
-					function() {
-						$('a[data-target="#deleteModal"]')
-								.click(
-										function() {
-											var deleteId = $(this).data('id');
-											var deleteUrl = "${pageContext.request.contextPath}/administrarcapacitacion?a=delete&id="
-													+ deleteId;
-											$('#deleteLink').attr('href',
-													deleteUrl);
-										});
-					});
-
-
-    </script>
+    <script th:inline="javascript">
+    $(document).ready(function() {
+        $('a[data-target="#deleteModal"]').click(function() {
+            var deleteId = $(this).data('id');
+            var url = /*[[@{/capacitacion/eliminar/}]]*/;
+            var deleteUrl = url + deleteId
+            $('#deleteLink').attr('href', deleteUrl);
+        });
+    });
+</script>
 </head>
 
 <body id="page-top">
@@ -104,12 +97,12 @@
                                     <td th:text="${capacitacion.getNombre()}">Nombre</td>
                                     <td th:text="${capacitacion.getDetalle()}">Detalle</td>
                                     <td th:text="${capacitacion.getCliente().getNombre()} + ' ' + ${capacitacion.getCliente().getApellido()}">Nombre Cliente</td>
-                                    <td><a th:href="${capacitacion.getId()}"><i class="fa-solid fa-book-open"></i></a>
+                                    <td><a th:href="@{/capacitacion/editar/{capacitacionId}(capacitacionId=${capacitacion    .getId()})}"><i class="fa-solid fa-book-open"></i></a>
                                         <a href="${pageContext.request.contextPath}/administrarcapacitacion?a=edit&id=${capacitacion.getId()}">
                                             <i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="#" data-toggle="modal" data-id="${capacitacion.getId()}"
-                                           data-target="#deleteModal">
-                                            <i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" data-toggle="modal" th:data-id="${capacitacion.getId()}" data-target="#deleteModal">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
                                     </td>
 
                                     </tr>
@@ -182,17 +175,13 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            |
+
             <div class="modal-body">Seguro quieres borrar esta
                 capacitacion?
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancelar
-                </button>
-                <a class="btn btn-primary"
-                   href="${pageContext.request.contextPath}/administrarcapacitacion?a=delete&id="
-                   id="deleteLink">Borrar</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#" id="deleteLink">Borrar</a>
             </div>
         </div>
     </div>

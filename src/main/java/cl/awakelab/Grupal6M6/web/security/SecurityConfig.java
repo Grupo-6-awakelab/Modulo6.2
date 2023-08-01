@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .requestMatchers("/dashboard").hasAuthority("ADMIN")
                 .requestMatchers("/api/v1/**").hasAuthority("ADMIN")  //.hasAuthority("USER")
                 .requestMatchers("/").permitAll()
+                .requestMatchers("/error").permitAll()
                 .and()
                 .cors().and().csrf().disable()
                 .httpBasic(Customizer.withDefaults())

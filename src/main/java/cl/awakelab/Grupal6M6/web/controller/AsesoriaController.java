@@ -34,6 +34,7 @@ public class AsesoriaController {
 
     @GetMapping("/crear")
     public String crear(Model model) {
+        model.addAttribute("isNew", true);
         model.addAttribute("profesionales",profesionalService.findAll());
         model.addAttribute("clientes",clienteService.findAll());
         return "asesoria";
