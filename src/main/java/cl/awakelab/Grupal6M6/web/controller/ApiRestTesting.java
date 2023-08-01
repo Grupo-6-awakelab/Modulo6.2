@@ -14,24 +14,29 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class ApiRestTesting {
 
-    private final AsesoriaService service;
+    private final CapacitacionService service;
 
-    public ApiRestTesting(AsesoriaService service) {
+    public ApiRestTesting(CapacitacionService service) {
         this.service = service;
 
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Asesoria> create(@RequestBody Asesoria capacitacion){
+    public ResponseEntity<Capacitacion> create(@RequestBody Capacitacion capacitacion){
         return service.create(capacitacion)
                 .map(t-> new ResponseEntity<>(t, HttpStatus.CREATED))
                 .orElse(new ResponseEntity<>(HttpStatus.CONFLICT));
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Asesoria>> findAll(){
+    public ResponseEntity<List<Capacitacion>> findAll(){
         return service.findAll()
                 .map(accidentes -> new ResponseEntity<>(accidentes, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id){
+        service.delete(id);
     }
 
 

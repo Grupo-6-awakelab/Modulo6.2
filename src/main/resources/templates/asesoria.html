@@ -67,7 +67,7 @@
                         una nueva capacitación
                     </div>
                     <div class="card-body">
-                        <form method="post" action="/asesoria/crear">
+                        <form th:with="action=${isNew ? '/asesoria/crear' : '/asesoria/editar/' + capacitacion.id}" method="post" th:action="@{${action}}">
 
 
                             <div class="form-group">
